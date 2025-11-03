@@ -48,6 +48,19 @@ async function startServer() {
       res.send(docs);
     });
 
+    // Página raíz
+app.get("/", (req, res) => {
+  res.send(`
+    <h1>🚗 Acceso Vehicular API</h1>
+    <p>Servidor funcionando correctamente.</p>
+    <ul>
+      <li>✅ <a href="/health">/health</a> — Verificar estado del servidor</li>
+      <li>📋 <a href="/patentes">/patentes</a> — Ver últimas patentes guardadas</li>
+      <li>📩 POST /patente — Endpoint para recibir patentes desde ESP32</li>
+    </ul>
+  `);
+});
+
     const PORT = process.env.PORT || 3000;
     app.listen(PORT, () => console.log(`🚀 API en puerto ${PORT}`));
   } catch (err) {
